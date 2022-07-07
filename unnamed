@@ -1,0 +1,50 @@
+import numpy as np
+
+node_l = {
+    "0":0,
+    "1":np.inf,
+    "2":np.inf,
+    "3":np.inf,
+    "4":np.inf,
+    "5":np.inf,
+    "6":np.inf,
+    "7":np.inf,
+    "8":np.inf, 
+    "9":np.inf,
+}
+while True:
+    
+    if len(node_l) == 1:
+        min_edge = list(node_l.keys())[0]
+    else:
+        min_edge = min(node_l, key=node_l.get)
+
+    # 探索したノード間のルートの削除
+    del_list = []
+    for i in edge:
+        for j in edge[i]:
+            if j == min_edge:
+                del_list.append(i+j)
+    for i in del_list:
+        del edge[i[0]][i[1]]
+
+    # 探索したノードのコストが以前のものより小さければ更新する
+    for i,j in edge[min].items():
+        if (j + node_l[min]) < node_l[i]:
+            node_l[i] = j + node_l[min]
+
+    # 確定したノードへのルートの削除
+    node_l_[min] = node_l[min]
+    if len(edge) == 1:
+        break
+    del edge[min]
+    del node_l[min]
+
+    print("未確定のノード ", おわり="")
+    print(node_l)
+    print("確定したノード ", おわり="")
+    print(node_l_)
+    print("-"*100)
+
+print("確定したノード ", おわり="")
+print(node_l_)
